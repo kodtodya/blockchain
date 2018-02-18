@@ -75,8 +75,8 @@ public class MyFirstChain {
 		Block currentBlock; 
 		Block previousBlock;
 		String hashTarget = new String(new char[difficulty]).replace('\0', '0');
-		HashMap<String,TransactionOutput> tempUTXOs = new HashMap<String,TransactionOutput>(); //a temporary working list of unspent transactions at a given block state.
-		tempUTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));
+		HashMap<String,TransactionOutput> tempUnspentTransactionOutouts = new HashMap<String,TransactionOutput>(); //a temporary working list of unspent transactions at a given block state.
+		tempUnspentTransactionOutouts.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));
 		
 		//loop through blockchain to check hashes:
 		for(int i=1; i < blockchain.size(); i++) {
@@ -114,7 +114,7 @@ public class MyFirstChain {
 				}
 				
 				for(TransactionInput input: currentTransaction.inputs) {	
-					tempOutput = tempUTXOs.get(input.transactionOutputId);
+					tempOutput = tempUnspentTransactionOutouts.get(input.transactionOutputId);
 					
 					if(tempOutput == null) {
 						System.out.println("#Referenced input on Transaction(" + t + ") is Missing");
@@ -126,11 +126,11 @@ public class MyFirstChain {
 						return false;
 					}
 					
-					tempUTXOs.remove(input.transactionOutputId);
+					tempUnspentTransactionOutouts.remove(input.transactionOutputId);
 				}
 				
 				for(TransactionOutput output: currentTransaction.outputs) {
-					tempUTXOs.put(output.id, output);
+					tempUnspentTransactionOutouts.put(output.id, output);
 				}
 				
 				if( currentTransaction.outputs.get(0).reciepient != currentTransaction.reciepient) {
