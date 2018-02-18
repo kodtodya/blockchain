@@ -4,13 +4,8 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.avadhut.chain.blockchainWallet.Transaction;
-import com.avadhut.chain.blockchainWallet.TransactionInput;
-import com.avadhut.chain.blockchainWallet.TransactionOutput;
-import com.avadhut.chain.blockchainWallet.Wallet;
+import com.avadhut.chain.blockchainWallet.*;
 import com.avadhut.chain.entities.Block;
-import com.avadhut.chain.utils.SecurityUtils;
-import com.google.gson.GsonBuilder;
 
 public class MyFirstChain {
 
